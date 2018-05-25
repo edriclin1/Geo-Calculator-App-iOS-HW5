@@ -22,7 +22,6 @@ class DecimalMinusTextField: UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.keyboardType = UIKeyboardType.decimalPad
-
     }
     
     fileprivate func getAccessoryButtons() -> UIView

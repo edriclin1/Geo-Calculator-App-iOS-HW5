@@ -96,7 +96,7 @@ class SettingsViewController: UIViewController {
     @objc func dismissPickerView() {
         self.unitsPickerView.isHidden = true
         
-        // set distance units label if picker was selecting distance units
+/*        // set distance units label if picker was selecting distance units
         if self.selection == "Kilometers" || selection == "Miles" {
             self.distanceUnitsLabel.text = selection
         }
@@ -105,6 +105,7 @@ class SettingsViewController: UIViewController {
         if selection == "Degrees" || selection == "Mils" {
             self.bearingUnitsLabel.text = selection
         }
+ */
         
     }
     
@@ -154,5 +155,15 @@ extension SettingsViewController : UIPickerViewDataSource, UIPickerViewDelegate 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         self.selection = self.pickerData[row]
+        
+        // set distance units label if picker was selecting distance units
+        if self.selection == "Kilometers" || selection == "Miles" {
+            self.distanceUnitsLabel.text = selection
+        }
+        
+        // else set bearing units label
+        if selection == "Degrees" || selection == "Mils" {
+            self.bearingUnitsLabel.text = selection
+        }
     }
 }

@@ -2,7 +2,7 @@
 //  GeoCalcTextField.swift
 //  Geo Calculator App
 //
-//  Created by student on 5/24/18.
+//  Created by user138338 on 5/25/18.
 //  Copyright © 2018 GVSU. All rights reserved.
 //
 
@@ -11,6 +11,9 @@ import UIKit
 class GeoCalcTextField: DecimalMinusTextField {
 
     override func awakeFromNib() {
+        
+        // get decimalminustextfield settings
+        super.awakeFromNib()
         
         // set foreground color to FOREGROUND_COLOR
         self.tintColor = FOREGROUND_COLOR
@@ -34,5 +37,4 @@ class GeoCalcTextField: DecimalMinusTextField {
         // set text to FOREGORUND_COLOR
         self.textColor = FOREGROUND_COLOR
     }
-
 }
