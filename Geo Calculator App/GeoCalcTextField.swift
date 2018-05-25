@@ -8,26 +8,31 @@
 
 import UIKit
 
-class GeoCalcTextField: UITextField {
+class GeoCalcTextField: DecimalMinusTextField {
 
     override func awakeFromNib() {
         
+        // set foreground color to FOREGROUND_COLOR
         self.tintColor = FOREGROUND_COLOR
+        
+        // set background color to transparent
         self.backgroundColor = UIColor.clear
         
-        //self.textColor = THEME_COLOR3
-        
+        // set placeholder text color to FOREGROUND_COLOR
         guard let ph = self.placeholder  else {
             return
         }
-        
-        self.layer.borderWidth = 1.0
-        self.layer.cornerRadius = 5.0
-        self.layer.borderColor = foreground as! CGColor FOREGROUND_COLOR
-        
         self.attributedPlaceholder =
             NSAttributedString(string: ph, attributes: [NSAttributedStringKey.foregroundColor :
                 FOREGROUND_COLOR])
+        
+        // set 1 point border with rounded corners with color FOREGROUND_COLOR
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 5.0
+        self.layer.borderColor = FOREGROUND_COLOR.cgColor
+        
+        // set text to FOREGORUND_COLOR
+        self.textColor = FOREGROUND_COLOR
     }
 
 }
