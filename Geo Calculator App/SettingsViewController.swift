@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
     var bearingUnits: String = ""
     
     var pickerData: [String] = [String]()
-    var selection : String = ""
+    var selection : String = "hello"
     var delegate : SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -50,8 +50,8 @@ class SettingsViewController: UIViewController {
             #selector(self.dismissPickerView))
         self.view.addGestureRecognizer(detectTouch)
         
-        distanceUnitsLabel.text = self.distanceUnits
-        bearingUnitsLabel.text = self.bearingUnits
+        self.distanceUnitsLabel.text = self.distanceUnits
+        self.bearingUnitsLabel.text = self.bearingUnits
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,38 +60,37 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func showDistanceUnitsPickerView() {
+        
         // show picker and load distance data
         self.unitsPickerView.isHidden = false
         self.pickerData = ["Kilometers", "Miles"]
         
+        // reload picker with bearing components
+        self.unitsPickerView.reloadAllComponents()
+        
         // start picker view with current distance selection
         self.selection = self.distanceUnitsLabel.text!
+        
         //print(self.selection + self.distanceUnitsLabel.text!)
         if let row: Int = self.pickerData.index(of: self.selection) {
             self.unitsPickerView.selectRow(row, inComponent: 0, animated: false)
-            print(self.unitsPickerView.selectedRow(inComponent: 0))
         }
- 
-        
-        // reload picker with distance units
-        self.unitsPickerView.reloadAllComponents()
     }
     
     @objc func showBearingUnitsPickerView() {
-        self.unitsPickerView.reloadAllComponents()
+        
         // show picker and load bearing data
         self.unitsPickerView.isHidden = false
         self.pickerData = ["Degrees", "Mils"]
+        
+        // reload picker with bearing components
+        self.unitsPickerView.reloadAllComponents()
         
         // start picker with curretn bearing selection
         self.selection = self.bearingUnitsLabel.text!
         if let row: Int = self.pickerData.index(of: self.selection) {
             self.unitsPickerView.selectRow(row, inComponent: 0, animated: false)
         }
- 
-        
-        // reload picker with bearing components
-        self.unitsPickerView.reloadAllComponents()
     }
     
     @objc func dismissPickerView() {
@@ -103,7 +102,7 @@ class SettingsViewController: UIViewController {
         }
         
         // else set bearing units label
-        else {
+        if selection == "Degrees" || selection == "Mils" {
             self.bearingUnitsLabel.text = selection
         }
         
